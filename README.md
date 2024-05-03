@@ -2,6 +2,7 @@
 
 # Table of Contents
 
+
 # Introduction
 
 This project was undertaken for the Duke DataFest 2024 Competition. DataFest is a data analysis competition hosted by the American Statistical Association where teams analyze a surprise data set over the course of a weekend to extract interesting insights. Myself and four other Duke students collaborated to tackle the challenges presented by this competition.
@@ -41,7 +42,7 @@ The following sections describe various avenues of the data we explored, and are
 
 Our initial focus was to assess the difficulty level of each chapter and explore potential trends in chapter difficulty throughout the textbook. We computed the mean accuracy of end-of-chapter exams, the results of which are depicted here: 
 
-![Chapter Difficulty].Image1.png
+![Chapter Difficulty](Image1)
 
 Subsequently, to ascertain the statistical significance of these findings, we conducted linear regression analysis comparing chapter difficulty to end-of-chapter scores, as illustrated in Image2
 
