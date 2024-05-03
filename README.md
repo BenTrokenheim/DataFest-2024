@@ -42,7 +42,7 @@ The following sections describe various avenues of the data we explored, and are
 
 Our initial focus was to assess the difficulty level of each chapter and explore potential trends in chapter difficulty throughout the textbook. We computed the mean accuracy of end-of-chapter exams, the results of which are depicted here: 
 
-![Chapter Difficulty](Image1)
+![Chapter Difficulty](Image1.png)
 
 Subsequently, to ascertain the statistical significance of these findings, we conducted linear regression analysis comparing chapter difficulty to end-of-chapter scores, as illustrated in Image2
 
