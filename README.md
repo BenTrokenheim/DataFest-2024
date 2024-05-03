@@ -1,7 +1,24 @@
 # DataFest 2024 ReadMe
 
 # Table of Contents
-
+## Introduction
+## The Task
+## The Data
+## Our Goal
+## Data Challenges
+## Project Approach
+### Difficulty Across Chapters
+#### Recommendations
+### Relationship Between Section Responses and Checkpoint Responses
+#### Recommendations
+### Attempt vs. Accuracy
+#### Recommendations
+### Behavior and Performance
+#### Recommendations
+### Network Analysis
+#### Recommendations
+## Future Directions
+## Conclusion
 
 # Introduction
 
@@ -42,15 +59,15 @@ The following sections describe various avenues of the data we explored, and are
 
 Our initial focus was to assess the difficulty level of each chapter and explore potential trends in chapter difficulty throughout the textbook. We computed the mean accuracy of end-of-chapter exams, the results of which are depicted here: 
 
-![Chapter Difficulty](Image1.png)
+![Untitled](Images/Image1.png)
 
 Subsequently, to ascertain the statistical significance of these findings, we conducted linear regression analysis comparing chapter difficulty to end-of-chapter scores, as illustrated in Image2
 
-Image2
+![Untitled](Images/Image2.png)
 
 Additionally, we visualized the distribution of end-of-chapter scores for each chapter using kernel density estimation plots, as shown in Image3
 
-Image3
+![Untitled](Images/Image3.png)
 
 ### Recommendations
 
@@ -64,15 +81,15 @@ Moreover, the widening distribution of end-of-chapter scores as students progres
 
 At the end of each section, the textbook prompted students to rate four checkpoint statements on a scale of 1 to 6, gauging their confidence and understanding of the content just covered. These statements included: “I am confident in what I have learned in the previous chapter”, “I was unable to put in the time needed to do well in the previous chapter”, “My statistics ability is something about me that I can’t change very much”, and “I think what I have learned in the previous chapter is useful.” We then analyzed each student's response to these questions in relation to their performance on end-of-chapter exams, as depicted in the following images:
 
-Image12
+![Untitled](Images/Image12.png)
 
-Image13
+![Untitled](Images/Image13.png)
 
-Image14
+![Untitled](Images/Image14.png)
 
-Image15
+![Untitled](Images/Image15.png)
 
-Image16
+![Untitled](Images/Image16.png)
 
 Our analysis revealed a clear relationship, albeit not for all questions. Notably, questions regarding students' confidence levels and the perceived usefulness of the content emerged as the most predictive of end-of-chapter exam scores.
 
@@ -86,7 +103,7 @@ Additionally, the significant influence of students' confidence levels on exam p
 
 Our investigation delved into the relationship between the number of attempts on in-section or end-of-section tests and the probability of answering questions correctly. Surprisingly, we discovered that as students attempted a question more frequently, their probability of success decreased. This trend, aggregated across all chapters, is illustrated in image4.
 
-Image4
+![Untitled](Images/Image4.png)
 
 ### Recommendations
 
@@ -100,7 +117,7 @@ Our investigation shifted towards examining the linearity of student paths throu
 
 Initially, we analyzed the aggregate frequency of visits to each chapter, aiming to uncover any notable patterns. As anticipated, the number of visits to subsequent sections decreased, mirroring the sequential nature of the textbook. However, the necessity to revisit previous materials underscored the interconnectedness of the content.
 
-Image5
+![Untitled](Images/Image5.png)
 
 Next, we quantified the linearity of students' paths by calculating its entropy. To do this, we used the formula for conditional entropy: the negative sum of conditional probabilities multiplied by the logarithm of those probabilities. We then computed the joint entropy, which reflects the degree of non-linearity in their traversal through the textbook. The following code snippet illustrates this process: 
 
@@ -134,9 +151,9 @@ for student_id, group in page_views_df_sorted.groupby('student_id'):
 
 Calculating the joint entropy for each student, which gauges the non-linearity of their textbook traversal, enabled us to graph the mean accuracy of students on the end-of-chapter review sections against their entropy score. These insightful results are depicted below:
 
-Image6
+![Untitled](Images/Image6.png)
 
-Image7
+![Untitled](Images/Image7.png)
 
 Regression analysis of these results indicates a positive relationship between joint entropy and student performance.
 
@@ -189,21 +206,21 @@ plt.show()
 
 The resulting visualizations, like the one shown below, offer insights into student navigation through the textbook:
 
-Image8
+![Untitled](Images/Image8.png)
 
 In this image, the golden node represents the textbook section the student started at, each node represents a unique chapter section, and node size indicates visit frequency. Edges signify directed transitions between sections, while edge thickness reflects traversal frequency.
 
 While fascinating, individual student traversals provide limited insight for CourseKata recommendations. Therefore, we further analyzed aggregate chapter section data. Initially, we examined the aggregate number of indegrees each chapter section received, as depicted in Image9.
 
-Image9
+![Untitled](Images/Image9.png)
 
 The graph illustrates the chapters that students revisit most frequently, suggesting the relevance and significance of certain content within the textbook. Such revisits may indicate critical concepts that students either forget or require reinforcement, particularly as they progress through subsequent chapters.
 
 We also analyzed the occurrence of loops within chapter sections, where a loop indicates a student's immediate return to the previously completed section. The following images offer a comprehensive overview of all chapter sections and the top 20 sections with the highest loop occurrences, respectively.
 
-Image10
+![Untitled](Images/Image10.png)
 
-Image11
+![Untitled](Images/Image11.png)
 
 ### Recommendations
 
