@@ -1,4 +1,6 @@
 ```python
+
+```python
 pip install statsmodels
 ```
 
@@ -3573,4 +3575,5 @@ plt.show()
 
 ```python
 
+```
 ```
