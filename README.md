@@ -1,5 +1,25 @@
 # DataFest 2024 ReadMe
 
+# Table of Contents
+### Introduction
+### The Task
+### The Data
+### Our Goal
+### Data Challenges
+### Project Approach
+* #### Difficulty Across Chapters
+    - ##### Recommendations
+* #### Relationship Between Section Responses and Checkpoint Responses
+    - ##### Recommendations
+* #### Attempt vs. Accuracy
+    - ##### Recommendations
+* #### Behavior and Performance
+    - ##### Recommendations
+* #### Network Analysis
+    - ##### Recommendations
+### Future Directions
+### Conclusion
+
 # Introduction
 
 This project was undertaken for the Duke DataFest 2024 Competition. DataFest is a data analysis competition hosted by the American Statistical Association where teams analyze a surprise data set over the course of a weekend to extract interesting insights. Myself and four other Duke students collaborated to tackle the challenges presented by this competition.
