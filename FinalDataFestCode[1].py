@@ -1,8 +1,9 @@
 ```python
 
-```python
+
+
 pip install statsmodels
-```
+
 
     Requirement already satisfied: statsmodels in c:\users\btrok\anaconda3\envs\example\lib\site-packages (0.14.2)
     Requirement already satisfied: numpy>=1.22.3 in c:\users\btrok\appdata\local\packages\pythonsoftwarefoundation.python.3.11_qbz5n2kfra8p0\localcache\local-packages\python311\site-packages (from statsmodels) (1.26.4)
@@ -18,18 +19,18 @@ pip install statsmodels
     
 
 
-```python
+
 pip install networkx
-```
+
 
     Requirement already satisfied: networkx in c:\users\btrok\anaconda3\envs\example\lib\site-packages (3.3)
     Note: you may need to restart the kernel to use updated packages.
     
 
 
-```python
+
 pip install scikit-learn
-```
+
 
     Requirement already satisfied: scikit-learn in c:\users\btrok\anaconda3\envs\example\lib\site-packages (1.4.2)
     Requirement already satisfied: numpy>=1.19.5 in c:\users\btrok\appdata\local\packages\pythonsoftwarefoundation.python.3.11_qbz5n2kfra8p0\localcache\local-packages\python311\site-packages (from scikit-learn) (1.26.4)
@@ -40,7 +41,7 @@ pip install scikit-learn
     
 
 
-```python
+
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -48,16 +49,16 @@ import seaborn as sns
 import statsmodels.api as sm
 import statsmodels.formula.api as smf
 import networkx as nx
-```
 
 
-```python
+
+
 pd.set_option('display.max_columns', 100)
 pd.set_option('display.max_rows', 100)
-```
 
 
-```python
+
+
 # Define the path to the files
 base_path = ''
 
@@ -67,7 +68,7 @@ items_df = pd.read_csv('items.csv')
 media_views_df = pd.read_csv('media_views.csv')
 page_views_df = pd.read_csv('page_views.csv')
 responses_df = pd.read_csv('responses.csv')
-```
+
 
     C:\Users\btrok\AppData\Local\Temp\ipykernel_44956\67440926.py:8: DtypeWarning: Columns (10) have mixed types. Specify dtype option on import or set low_memory=False.
       page_views_df = pd.read_csv('page_views.csv')
@@ -78,7 +79,7 @@ responses_df = pd.read_csv('responses.csv')
 Difficulty Across Chapters
 
 
-```python
+
 columns_to_keep = ['book', 'release', 'chapter', 'page', 'chapter_number',
                    'section_number', 'review_flag', 'institution_id', 'class_id',
                    'student_id', 'item_id', 'item_type', 'response', 'prompt',
@@ -88,10 +89,10 @@ columns_to_keep = ['book', 'release', 'chapter', 'page', 'chapter_number',
 responses_df = responses_df.loc[:, columns_to_keep]
 
 responses_df['accuracy'] = responses_df['points_earned'] / responses_df['points_possible']
-```
 
 
-```python
+
+
 # Calculate mean accuracy, standard deviation, and sample size for each chapter
 chapter_stats = responses_df.groupby('chapter')['accuracy'].agg(['mean', 'std', 'count']).reset_index()
 
@@ -119,7 +120,7 @@ plt.xticks(ticks=np.arange(len(xticks_labels)), labels=xticks_labels, rotation=9
 
 plt.tight_layout()
 plt.show()
-```
+
 
 
     
@@ -128,7 +129,7 @@ plt.show()
 
 
 
-```python
+
 # Plotting with improvements
 plt.figure(figsize=(18, 10))  # Adjusted for better fit
 
@@ -158,7 +159,7 @@ plt.xticks(ticks=np.arange(len(xticks_labels)), labels=xticks_labels, rotation=4
 
 plt.tight_layout()
 plt.show()
-```
+
 
 
     
@@ -167,9 +168,9 @@ plt.show()
 
 
 
-```python
+
 chapter_stats_sorted
-```
+
 
 
 
@@ -370,17 +371,17 @@ chapter_stats_sorted
 
 
 
-```python
+
 # Assuming 'responses_df' is your DataFrame
 # Group by 'student_id' and 'chapter' to calculate mean accuracy
 mean_accuracy = responses_df.groupby(['student_id', 'chapter'])['accuracy'].mean().reset_index(name='mean_accuracy')
 
 # Extract chapter number for each row in 'mean_accuracy'
 mean_accuracy['chapter_num'] = mean_accuracy['chapter'].str.extract('(\d+)').astype(float)
-```
 
 
-```python
+
+
 # Ensure no NaN values for the regression analysis
 mean_accuracy.dropna(subset=['mean_accuracy', 'chapter_num'], inplace=True)
 
@@ -394,7 +395,7 @@ model = sm.OLS(Y, X).fit()
 
 # Print the summary of the regression
 model.summary()
-```
+
 
 
 
@@ -458,7 +459,7 @@ model.summary()
 
 
 
-```python
+
 # Plotting the linear regression results
 plt.figure(figsize=(18, 6))
 plt.scatter(mean_accuracy['chapter_num'], mean_accuracy['mean_accuracy'], color='blue', label='Data Points')
@@ -468,7 +469,7 @@ plt.ylabel('Mean Accuracy')
 plt.title('Linear Regression of Mean Accuracy on Chapter Number')
 plt.legend()
 plt.show()
-```
+
 
 
     
@@ -477,7 +478,7 @@ plt.show()
 
 
 
-```python
+
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -510,7 +511,7 @@ plt.legend()
 
 plt.tight_layout()
 plt.show()
-```
+
 
 
     
@@ -519,7 +520,7 @@ plt.show()
 
 
 
-```python
+
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
@@ -556,7 +557,7 @@ plt.xticks(ticks=np.arange(len(xticks_labels)), labels=xticks_labels, rotation=4
 
 plt.title('Separated KDE of Mean Accuracy for Each Chapter')
 plt.show()
-```
+
 
 
     
@@ -565,7 +566,7 @@ plt.show()
 
 
 
-```python
+
 # Calculate residuals
 residuals = model.resid
 
@@ -583,7 +584,7 @@ ax = fig.add_subplot(111)
 sm.qqplot(residuals, line='s', ax=ax)  # 's' indicates a standardized line
 plt.title('Q-Q Plot of Residuals')
 plt.show()
-```
+
 
 
     
@@ -600,7 +601,7 @@ plt.show()
 Relationship Between Section Responses and Review Responses
 
 
-```python
+
 responses_df = pd.read_csv(f'{base_path}responses.csv')
 
 columns_to_keep = ['book', 'release', 'chapter', 'page', 'chapter_number',
@@ -616,22 +617,22 @@ responses_df.dropna(subset=['accuracy'], inplace=True)
 
 mean_accuracy = responses_df.groupby(['student_id', 'chapter'])['accuracy'].mean().reset_index(name='mean_accuracy')
 responses_df = pd.merge(responses_df, mean_accuracy, on=['student_id', 'chapter'], how='left')
-```
+
 
     C:\Users\btrok\AppData\Local\Temp\ipykernel_44956\3018772879.py:1: DtypeWarning: Columns (32,33,34,35,36,37,38,39) have mixed types. Specify dtype option on import or set low_memory=False.
       responses_df = pd.read_csv(f'{base_path}responses.csv')
     
 
 
-```python
+
 # Step 1: Subset checkpoints_df to keep only specific columns
 checkpoints_subset = checkpoints_df[['student_id', 'chapter_number', 'response', 'construct', 'EOC']]
 # Step 2: Merge the DataFrames
 merged_df = pd.merge(responses_df, checkpoints_subset, on=['student_id', 'chapter_number'], how='left')
-```
 
 
-```python
+
+
 # Scatter plot of mean_accuracy vs EOC
 plt.figure(figsize=(18, 6))
 sns.scatterplot(data=merged_df, x='EOC', y='mean_accuracy')
@@ -639,7 +640,7 @@ plt.title('Relationship between Mean Accuracy and EOC')
 plt.xlabel('EOC')
 plt.ylabel('Mean Accuracy')
 plt.show()
-```
+
 
 
     
@@ -648,7 +649,7 @@ plt.show()
 
 
 
-```python
+
 # Step 1: Identify chapters as review or non-review
 # This step assumes you have a 'chapter' column to work with
 merged_df['is_review'] = merged_df['page'].str.contains("Review")
@@ -668,10 +669,10 @@ merged_df = pd.merge(merged_df, review_mean_accuracy, on=['student_id', 'chapter
 
 # Merge non-review mean accuracy
 merged_df = pd.merge(merged_df, non_review_mean_accuracy, on=['student_id', 'chapter_number'], how='left')
-```
 
 
-```python
+
+
 # Ensure no NaN values for the regression analysis
 data_for_regression = merged_df.dropna(subset=['review_mean_accuracy', 'non_review_mean_accuracy', ])
 
@@ -685,7 +686,7 @@ model = sm.OLS(Y, X).fit()
 
 # Print the summary of the regression
 model.summary()
-```
+
 
 
 
@@ -749,7 +750,7 @@ model.summary()
 
 
 
-```python
+
 # Scatter plot of non-review accuracy vs. review accuracy
 plt.figure(figsize=(18, 18))
 sns.scatterplot(x='non_review_mean_accuracy', y='review_mean_accuracy', data=merged_df, color='blue', label='Data Points')
@@ -766,7 +767,7 @@ plt.xlabel('Non-Review Mean Accuracy')
 plt.ylabel('Review Mean Accuracy')
 plt.legend()
 plt.show()
-```
+
 
 
     
@@ -775,7 +776,7 @@ plt.show()
 
 
 
-```python
+
 # Drop any rows that could not be converted or were missing
 merged_df.dropna(subset=['review_mean_accuracy', 'non_review_mean_accuracy', 'chapter_number'], inplace=True)
 
@@ -788,7 +789,7 @@ mixed_model = smf.mixedlm(model_formula, merged_df, groups=merged_df['student_id
 mixed_model_result = mixed_model.fit()
 
 mixed_model_result.summary()
-```
+
 
 
 
@@ -832,7 +833,7 @@ mixed_model_result.summary()
 
 
 
-```python
+
 # Assuming 'merged_df' is sorted by 'chapter_number'
 merged_df = merged_df.sort_values(by='chapter_number')
 
@@ -871,7 +872,7 @@ for i, chapter in enumerate(unique_chapters[:num_chapters_to_plot], 1):
 
 plt.tight_layout()
 plt.show()
-```
+
 
     C:\Users\btrok\AppData\Local\Temp\ipykernel_44956\833541905.py:37: UserWarning: Creating legend with loc="best" can be slow with large amounts of data.
       plt.tight_layout()
@@ -886,7 +887,7 @@ plt.show()
 
 
 
-```python
+
 import matplotlib.pyplot as plt
 import seaborn as sns
 import statsmodels.api as sm
@@ -929,7 +930,7 @@ for i, chapter in enumerate(unique_chapters[:num_chapters_to_plot], 1):
 
 plt.tight_layout()
 plt.show()
-```
+
 
     C:\Users\btrok\AppData\Local\Temp\ipykernel_44956\3574769902.py:41: UserWarning: Creating legend with loc="best" can be slow with large amounts of data.
       plt.tight_layout()
@@ -944,7 +945,7 @@ plt.show()
 
 
 
-```python
+
 # Initialize lists to store results
 chapter_numbers = []
 intercepts = []
@@ -976,7 +977,7 @@ regression_params_df = pd.DataFrame({
     'Intercept': intercepts,
     'Coefficient': coefficients
 })
-```
+
 
     C:\Users\btrok\AppData\Local\Temp\ipykernel_44956\4237604450.py:23: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
       intercepts.append(model.params[0])
@@ -1017,7 +1018,7 @@ regression_params_df = pd.DataFrame({
     
 
 
-```python
+
 # Plotting the intercepts and coefficients over chapters
 plt.figure(figsize=(14, 6))
 
@@ -1035,7 +1036,7 @@ plt.ylabel('Coefficient')
 
 plt.tight_layout()
 plt.show()
-```
+
 
 
     
@@ -1044,7 +1045,7 @@ plt.show()
 
 
 
-```python
+
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -1081,7 +1082,7 @@ plt.grid(color='white', linestyle='--', linewidth=0.5)  # Adding gridlines for r
 
 plt.tight_layout()
 plt.show()
-```
+
 
 
     
@@ -1090,7 +1091,7 @@ plt.show()
 
 
 
-```python
+
 # Regression for Intercept Change Over Chapters
 X_intercept = sm.add_constant(regression_params_df['Chapter'])  # Adds a constant term
 Y_intercept = regression_params_df['Intercept']
@@ -1100,14 +1101,14 @@ model_intercept = sm.OLS(Y_intercept, X_intercept).fit()
 X_coefficient = sm.add_constant(regression_params_df['Chapter'])  # Adds a constant term
 Y_coefficient = regression_params_df['Coefficient']
 model_coefficient = sm.OLS(Y_coefficient, X_coefficient).fit()
-```
 
 
-```python
+
+
 # Display the regression summary for intercepts
 print("Regression Statistics for Intercept Change Over Chapters:")
 model_intercept.summary()
-```
+
 
     Regression Statistics for Intercept Change Over Chapters:
     
@@ -1178,11 +1179,11 @@ model_intercept.summary()
 
 
 
-```python
+
 # Display the regression summary for coefficients
 print("\nRegression Statistics for Coefficient Change Over Chapters:")
 model_coefficient.summary()
-```
+
 
     
     Regression Statistics for Coefficient Change Over Chapters:
@@ -1256,7 +1257,7 @@ model_coefficient.summary()
 Prompt Analysis
 
 
-```python
+
 responses_df = pd.read_csv(f'{base_path}responses.csv')
 
 columns_to_keep = ['book', 'release', 'chapter', 'page', 'chapter_number',
@@ -1272,22 +1273,22 @@ responses_df.dropna(subset=['accuracy'], inplace=True)
 
 mean_accuracy = responses_df.groupby(['student_id', 'chapter'])['accuracy'].mean().reset_index(name='mean_accuracy')
 responses_df = pd.merge(responses_df, mean_accuracy, on=['student_id', 'chapter'], how='left')
-```
+
 
     C:\Users\btrok\AppData\Local\Temp\ipykernel_44956\3018772879.py:1: DtypeWarning: Columns (32,33,34,35,36,37,38,39) have mixed types. Specify dtype option on import or set low_memory=False.
       responses_df = pd.read_csv(f'{base_path}responses.csv')
     
 
 
-```python
+
 # Step 1: Subset checkpoints_df to keep only specific columns
 checkpoints_subset = checkpoints_df[['student_id', 'chapter_number', 'response', 'construct', 'EOC']]
 # Step 2: Merge the DataFrames
 merged_df = pd.merge(responses_df, checkpoints_subset, on=['student_id', 'chapter_number'], how='left')
-```
 
 
-```python
+
+
 from collections import Counter
 
 # Splitting strings and extracting keywords
@@ -1308,7 +1309,7 @@ plt.ylabel('Frequency')
 plt.title('Top Keywords in Prompts')
 plt.xticks(rotation=45, ha="right")
 plt.show()
-```
+
 
 
     
@@ -1319,7 +1320,7 @@ plt.show()
 Attempt and Accuracy
 
 
-```python
+
 # Assuming 'accuracy' is a binary column where 1 indicates correct response and 0 indicates incorrect
 prob_accuracy_by_attempt = merged_df.groupby('attempt')['accuracy'].mean().reset_index()
 prob_accuracy_by_attempt.rename(columns={'accuracy': 'probability_of_accuracy_1'}, inplace=True)
@@ -1345,7 +1346,7 @@ plt.legend(title='Chapter Number', bbox_to_anchor=(1.05, 1), loc='upper left')
 plt.grid(True)
 plt.tight_layout()
 plt.show()
-```
+
 
 
     
@@ -1354,14 +1355,14 @@ plt.show()
 
 
 
-```python
+
 percentiles = [0.89, 0.9, 0.91, 0.92, 0.93, 0.94, 0.95, 0.96, 0.97, 0.98, 0.99]  # Define the percentiles you're interested in
 attempt_percentiles = merged_df['attempt'].quantile(percentiles).to_dict()
 
 # Print the percentiles
 for percentile, value in attempt_percentiles.items():
     print(f"{percentile * 100}th percentile: {value}")
-```
+
 
     89.0th percentile: 1.0
     90.0th percentile: 1.0
@@ -1377,7 +1378,7 @@ for percentile, value in attempt_percentiles.items():
     
 
 
-```python
+
 # Filter for attempts up to and including the 10th
 filtered_prob_accuracy_by_attempt_chapter = prob_accuracy_by_attempt_chapter[prob_accuracy_by_attempt_chapter['attempt'] <= 10]
 filtered_overall_prob_accuracy_by_attempt = overall_prob_accuracy_by_attempt[overall_prob_accuracy_by_attempt['attempt'] <= 10]
@@ -1397,7 +1398,7 @@ plt.legend(title='Chapter Number', bbox_to_anchor=(1.05, 1), loc='upper left')
 plt.grid(True)
 plt.tight_layout()
 plt.show()
-```
+
 
 
     
@@ -1406,7 +1407,7 @@ plt.show()
 
 
 
-```python
+
 import matplotlib.pyplot as plt
 import seaborn as sns
 
@@ -1440,7 +1441,7 @@ frame.set_color('#f0f0f0')
 
 plt.tight_layout()
 plt.show()
-```
+
 
 
     ---------------------------------------------------------------------------
@@ -1465,7 +1466,7 @@ plt.show()
 
 
 
-```python
+
 # Formula: 'accuracy ~ attempt' specifies that 'accuracy' is predicted by 'attempt'
 # 'groups=df_for_model['student_id']' treats 'student_id' as a random effect
 model_formula = 'accuracy ~ attempt'
@@ -1476,7 +1477,7 @@ mixed_model_result = mixed_model.fit()
 
 # Print the summary of the model results
 mixed_model_result.summary()
-```
+
 
     C:\Users\btrok\anaconda3\envs\example\Lib\site-packages\statsmodels\base\model.py:607: ConvergenceWarning: Maximum Likelihood optimization failed to converge. Check mle_retvals
       warnings.warn("Maximum Likelihood optimization failed to "
@@ -1528,23 +1529,23 @@ mixed_model_result.summary()
 Behavior and Performance
 
 
-```python
+
 # First, aggregate merged_df to ensure unique combinations of student_id and chapter_number
 aggregated_df = merged_df.groupby(['student_id', 'chapter_number'])['mean_accuracy'].mean().reset_index()
 # Now, merge the aggregated data with page_views_df
 page_views_df = pd.merge(page_views_df, aggregated_df, on=['student_id', 'chapter_number'], how='left')
-```
 
 
-```python
+
+
 # Assuming page_views_df is your DataFrame and dt_accessed is in a recognizable datetime string format
 page_views_df['dt_accessed'] = pd.to_datetime(page_views_df['dt_accessed'])
 # Now that dt_accessed is a datetime object, you can sort the DataFrame by this column
 page_views_df = page_views_df.sort_values(by='dt_accessed')
-```
 
 
-```python
+
+
 # Combine chapter_number and section_number into a unique identifier for each access event.
 page_views_df['chapter_section'] = page_views_df['chapter_number'].astype(str) + '_' + page_views_df['section_number'].astype(str)
 # Group by student_id and chapter_section, then count occurrences
@@ -1561,10 +1562,10 @@ access_prob['entropy_contribution'] = -access_prob['probability'] * np.log2(acce
 student_entropy = access_prob.groupby('student_id')['entropy_contribution'].sum().reset_index(name='entropy')
 # Merge entropy values back into the original DataFrame
 page_views_df = page_views_df.merge(student_entropy, on='student_id', how='left')
-```
 
 
-```python
+
+
 # Count occurrences of each chapter-section combination
 chapter_section_distribution = page_views_df.groupby(['chapter_number', 'section_number']).size().reset_index(name='access_count')
 
@@ -1580,7 +1581,7 @@ plt.ylabel('Access Count')
 plt.xticks(ticks=chapter_section_distribution.index, labels=[f"{row['chapter_number']}-{row['section_number']}" for idx, row in chapter_section_distribution.iterrows()], rotation=90)
 plt.tight_layout()
 plt.show()
-```
+
 
 
     
@@ -1589,7 +1590,7 @@ plt.show()
 
 
 
-```python
+
 # Assuming page_views_df is your DataFrame and it contains 'student_id', 'chapter_section', and 'dt_accessed'
 
 # Step 1: Sort the DataFrame by 'student_id' and 'dt_accessed'
@@ -1626,17 +1627,17 @@ joint_entropy_df = pd.DataFrame(list(joint_entropy.items()), columns=['student_i
 
 # Merge the joint entropy back to the original DataFrame (or to a summary DataFrame as needed)
 page_views_df = page_views_df.merge(joint_entropy_df, on='student_id', how='left')
-```
 
 
-```python
+
+
 # Since a student might appear multiple times with the same entropy value, we'll drop duplicates
 cleaned_df = page_views_df[page_views_df['joint_entropy'] >= 5]
 cleaned_df = cleaned_df.drop_duplicates(subset='student_id', keep='first')
-```
 
 
-```python
+
+
 # Plotting the distribution of joint entropy
 plt.figure(figsize=(18, 8))
 plt.hist(cleaned_df['joint_entropy'], bins=50, color='skyblue', edgecolor='black')
@@ -1645,7 +1646,7 @@ plt.xlabel('Joint Entropy')
 plt.ylabel('Number of Students')
 plt.grid(axis='y', alpha=0.75)
 plt.show()
-```
+
 
 
     
@@ -1654,7 +1655,7 @@ plt.show()
 
 
 
-```python
+
 # Set the aesthetic style of the plots
 sns.set_style("whitegrid", {'grid.linestyle': '--'})
 
@@ -1677,7 +1678,7 @@ plt.ylim([cleaned_df['mean_accuracy'].min() * 0.9, cleaned_df['mean_accuracy'].m
 
 plt.tight_layout()
 plt.show()
-```
+
 
 
     
@@ -1686,7 +1687,7 @@ plt.show()
 
 
 
-```python
+
 # Set the aesthetic style of the plots
 sns.set_style('whitegrid')
 
@@ -1712,7 +1713,7 @@ plt.gca().set_facecolor('#f0f0f0')
 plt.grid(color='white', linestyle='--', linewidth=0.5)
 
 plt.show()
-```
+
 
     No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
     
@@ -1724,7 +1725,7 @@ plt.show()
 
 
 
-```python
+
 # Drop rows where 'joint_entropy', 'mean_accuracy', or 'student_id' have NaN values
 cleaned_df = cleaned_df.dropna(subset=['joint_entropy', 'mean_accuracy', 'student_id'])
 
@@ -1738,7 +1739,7 @@ mdf = md.fit()
 
 # Print the summary of the model
 mdf.summary()
-```
+
 
     C:\Users\btrok\anaconda3\envs\example\Lib\site-packages\statsmodels\regression\mixed_linear_model.py:2261: ConvergenceWarning: The Hessian matrix at the estimated parameter values is not positive definite.
       warnings.warn(msg, ConvergenceWarning)
@@ -1786,7 +1787,7 @@ mdf.summary()
 
 
 
-```python
+
 # Extract residuals
 residuals = mdf.resid
 
@@ -1816,7 +1817,7 @@ plt.ylabel('Density')
 plt.legend()
 
 plt.show()
-```
+
 
 
     
@@ -1825,7 +1826,7 @@ plt.show()
 
 
 
-```python
+
 import scipy.stats as stats
 
 # Assuming 'residuals' are obtained from the fitted model as before
@@ -1836,7 +1837,7 @@ plt.title('Q-Q Plot of Residuals')
 plt.xlabel('Theoretical Quantiles')
 plt.ylabel('Ordered Values')
 plt.show()
-```
+
 
 
     
@@ -1845,7 +1846,7 @@ plt.show()
 
 
 
-```python
+
 import matplotlib.pyplot as plt
 import networkx as nx
 import pandas as pd
@@ -1886,7 +1887,7 @@ nx.draw(G, pos, with_labels=True, node_color=node_color, node_size=node_size,
 plt.title(f"Enhanced Viewing Path of Student {student_id}", fontsize=20)
 plt.axis('off')  # Turn off the axis
 plt.show()
-```
+
 
 
     
@@ -1895,7 +1896,7 @@ plt.show()
 
 
 
-```python
+
 # Count student appearances
 student_counts = page_views_df['student_id'].value_counts()
 
@@ -1903,7 +1904,7 @@ student_counts = page_views_df['student_id'].value_counts()
 sorted_unique_students = student_counts.sort_values(ascending=True).index.tolist()
 
 sorted_unique_students
-```
+
 
 
 
@@ -2913,7 +2914,7 @@ sorted_unique_students
 
 
 
-```python
+
 # Get unique student IDs
 unique_student_ids = page_views_df['student_id'].unique()
 
@@ -2958,10 +2959,10 @@ for student_id in unique_student_ids:
     for node in G.nodes():
         outdegree_sums.setdefault(node, 0)  
         outdegree_sums[node] += G.out_degree(node)
-```
 
 
-```python
+
+
 # Extract nodes (chapter sections) and their indegrees
 nodes = list(indegree_sums.keys())
 indegree_values = list(indegree_sums.values())
@@ -2977,7 +2978,7 @@ plt.title("Indegree Distribution of Chapter Sections")
 plt.xticks(rotation=90, ha='right')  # Rotate x-axis labels for readability
 plt.tight_layout()  # Adjust layout to prevent labels from overlapping
 plt.show()
-```
+
 
 
     
@@ -2986,7 +2987,7 @@ plt.show()
 
 
 
-```python
+
 # Visualize Outdegrees
 nodes = list(outdegree_sums.keys())
 outdegree_values = list(outdegree_sums.values())
@@ -2999,7 +3000,7 @@ plt.title("Outdegree Distribution of Chapter Sections")
 plt.xticks(rotation=90, ha='right')
 plt.tight_layout()
 plt.show()
-```
+
 
 
     
@@ -3008,7 +3009,7 @@ plt.show()
 
 
 
-```python
+
 # Calculate total indegree and outdegree
 total_indegree = sum(indegree_sums.values())
 total_outdegree = sum(outdegree_sums.values())
@@ -3022,7 +3023,7 @@ if total_indegree == total_outdegree:
     print("The sum of indegree and outdegree are equal!")
 else:
     print("Warning: The sum of indegree and outdegree are not equal.")
-```
+
 
     Total Indegree: 296119
     Total Outdegree: 296119
@@ -3030,7 +3031,7 @@ else:
     
 
 
-```python
+
 # Calculate indegree - outdegree
 net_degree = {}
 for node in indegree_sums:
@@ -3059,7 +3060,7 @@ for index in chapter_start_indices:
     plt.axvline(x=index - 0.5, color='gray', linestyle='--')
 
 plt.show()
-```
+
 
 
     
@@ -3068,7 +3069,7 @@ plt.show()
 
 
 
-```python
+
 # Function to encode chapter sections
 def encode_chapter_section(section):
     if pd.isna(section):
@@ -3107,24 +3108,24 @@ page_views_df.dropna(subset=['chapter_section'], inplace=True)
 
 # Group by 'student_id' and apply calculation, do not reset index to keep 'student_id' as index
 edges_df = page_views_df.groupby('student_id').apply(calculate_edge_types)
-```
+
 
     C:\Users\btrok\AppData\Local\Temp\ipykernel_44956\108616040.py:38: DeprecationWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
       edges_df = page_views_df.groupby('student_id').apply(calculate_edge_types)
     
 
 
-```python
+
 page_views_df = pd.merge(edges_df, page_views_df, on='student_id', how='inner')
-```
 
 
-```python
+
+
 page_views_df['edge_ratio'] = page_views_df['backward_edges'] / (page_views_df['backward_edges'] + page_views_df['forward_edges'])
-```
 
 
-```python
+
+
 # Assuming page_views_df is your DataFrame
 # Remove rows with NaN values in either 'edge_ratio' or 'mean_accuracy'
 page_views_df_clean = page_views_df.dropna(subset=['edge_ratio', 'mean_accuracy'])
@@ -3141,7 +3142,7 @@ model = sm.OLS(y, X).fit()
 
 # Print the regression statistics
 model.summary()
-```
+
 
 
 
@@ -3205,7 +3206,7 @@ model.summary()
 
 
 
-```python
+
 # Simulated data (replace with your actual data)
 data = {
     'edge_ratio': X['edge_ratio'],  # Assuming X is your DataFrame of features
@@ -3214,10 +3215,10 @@ data = {
 }
 df = pd.DataFrame(data)
 df = df.drop_duplicates()
-```
 
 
-```python
+
+
 # Set the aesthetic style of the plots
 sns.set_style("whitegrid", {'grid.linestyle': '--'})
 
@@ -3240,7 +3241,7 @@ plt.ylim([df['mean_accuracy'].min() * 0.9, df['mean_accuracy'].max() * 1.1])
 
 plt.tight_layout()
 plt.show()
-```
+
 
 
     
@@ -3249,7 +3250,7 @@ plt.show()
 
 
 
-```python
+
 # Function to count loops within each chapter section
 def count_loops_per_chapter(df):
     # Initialize a dictionary to hold the count of loops per chapter section
@@ -3274,10 +3275,10 @@ loops_df = count_loops_per_chapter(page_views_df)
 
 # Convert the dictionary to a DataFrame for easier handling
 loops_df = pd.DataFrame(list(loops_df.items()), columns=['chapter_section', 'loops'])
-```
 
 
-```python
+
+
 def visualize_loops_sorted_by_chapter(loops_df):
     # Ensure 'chapter_section' is in float format to sort numerically
     loops_df['chapter_section'] = loops_df['chapter_section'].astype(float)
@@ -3299,7 +3300,7 @@ def visualize_loops_sorted_by_chapter(loops_df):
 
 # Call the visualization function with the DataFrame containing loop counts
 visualize_loops_sorted_by_chapter(loops_df)
-```
+
 
 
     
@@ -3308,7 +3309,7 @@ visualize_loops_sorted_by_chapter(loops_df)
 
 
 
-```python
+
 # Visualization
 def visualize_loops(loops_df):
     # Sorting the DataFrame based on 'loops' to have a meaningful chart
@@ -3323,7 +3324,7 @@ def visualize_loops(loops_df):
     plt.tight_layout()
     plt.show()
 visualize_loops(loops_df)
-```
+
 
 
     <Figure size 640x480 with 0 Axes>
@@ -3336,7 +3337,7 @@ visualize_loops(loops_df)
 
 
 
-```python
+
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -3371,7 +3372,7 @@ plt.grid(color='white', linestyle='--', linewidth=0.5)
 
 plt.tight_layout()
 plt.show()
-```
+
 
 
     
@@ -3380,9 +3381,9 @@ plt.show()
 
 
 
-```python
+
 page_views_df['page'].unique()
-```
+
 
 
 
@@ -3537,7 +3538,7 @@ page_views_df['page'].unique()
 
 
 
-```python
+
 # Take the top 20 rows
 top20 = loops_df_sorted.head(20)
 
@@ -3564,16 +3565,17 @@ plt.grid(color='white', linestyle='--', linewidth=0.5)
 plt.tight_layout()
 plt.savefig("my_plot.png")
 plt.show()
-```
+
 
 
     
 ![png](output_74_0.png)
     
-
-
-
-```python
-
 ```
-```
+
+
+
+
+
+
+
