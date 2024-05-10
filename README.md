@@ -1,24 +1,24 @@
 # DataFest 2024 ReadMe
 
 # Table of Contents
-## Introduction
-## The Task
-## The Data
-## Our Goal
-## Data Challenges
-## Project Approach
-### Difficulty Across Chapters
-#### Recommendations
-### Relationship Between Section Responses and Checkpoint Responses
-#### Recommendations
-### Attempt vs. Accuracy
-#### Recommendations
-### Behavior and Performance
-#### Recommendations
-### Network Analysis
-#### Recommendations
-## Future Directions
-## Conclusion
+### Introduction
+### The Task
+### The Data
+### Our Goal
+### Data Challenges
+### Project Approach
+#### Difficulty Across Chapters
+##### Recommendations
+#### Relationship Between Section Responses and Checkpoint Responses
+##### Recommendations
+#### Attempt vs. Accuracy
+##### Recommendations
+#### Behavior and Performance
+##### Recommendations
+#### Network Analysis
+##### Recommendations
+### Future Directions
+### Conclusion
 
 # Introduction
 
