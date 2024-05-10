@@ -7,16 +7,16 @@
 ### Our Goal
 ### Data Challenges
 ### Project Approach
-#### Difficulty Across Chapters
-##### Recommendations
-#### Relationship Between Section Responses and Checkpoint Responses
-##### Recommendations
-#### Attempt vs. Accuracy
-##### Recommendations
-#### Behavior and Performance
-##### Recommendations
-#### Network Analysis
-##### Recommendations
+* #### Difficulty Across Chapters
+    - ##### Recommendations
+* #### Relationship Between Section Responses and Checkpoint Responses
+    - ##### Recommendations
+* #### Attempt vs. Accuracy
+    - ##### Recommendations
+* #### Behavior and Performance
+    - ##### Recommendations
+* #### Network Analysis
+    - ##### Recommendations
 ### Future Directions
 ### Conclusion
 
