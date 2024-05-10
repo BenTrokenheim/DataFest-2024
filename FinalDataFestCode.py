@@ -1,4 +1,3 @@
-```python
 
 ```python
 pip install statsmodels
